@@ -15,19 +15,20 @@ void MainThread::print(Set<Y> * s)
 
 void MainThread::run()
 {
-    Set<int>* p_test; p_test = new Set<int>;
-    p_test->add(new int(9)); p_test->add(new int(2)); p_test->add(new int(3));
-    Set<int>* p_tset; p_tset = new Set<int>;
-    p_tset->add(new int(2)); p_tset->add(new int(3)); p_tset->add(new int(4));
+    Set<char>* p_test; p_test = new Set<char>;
+    p_test->add(new char('a')); p_test->add(new char('b')); p_test->add(new char('3'));
+    Set<char>* p_tset; p_tset = new Set<char>;
+    p_tset->add(new char(2)); p_tset->add(new char('3')); p_tset->add(new char(4));
 
-    Set<int>* p_insctn = new Set<int>;
-    Set<int>* p_union = new Set<int>;
-    Set<int> insctn = ((*p_test) * (*p_tset));
-    Set<int> unon = ((*p_test) + (*p_tset));
+    Set<char>* p_insctn = new Set<char>;
+    Set<char>* p_union = new Set<char>;
+    Set<char> insctn = ((*p_test) * (*p_tset));
+    Set<char> unon = ((*p_test) + (*p_tset));
 
     p_insctn = &insctn; p_union = &unon;
     print(p_test); print(p_tset);
 
+    std::cout<<"The sets are of type: " << unon.getType().toStdString().c_str() << "\n";
     std::cout<<"The intersection is: ";
     print(p_insctn);
     std::cout<<"The union is: ";

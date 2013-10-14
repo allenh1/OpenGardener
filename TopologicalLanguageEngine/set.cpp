@@ -55,10 +55,25 @@ class out_of_bounds: public std::exception
 };//handle out of bounds exception
 
 template<typename T>
+inline bool isStringType(T* other)
+{
+    if (typeid(*other).name() == "QString" ||
+            typeid(*other).name() == "string" ||
+            typeid(*other).name() == "c" ||
+            typeid(*other).name() == "QChar")
+        return true;
+    return false;
+}//check if the input is a string.
+
+template<typename T>
 QString Set<T>::toString(int index)
 {
     QString temp;
-    temp.setNum(pType[index]);
+    if (!isStringType(&pType[index]))
+        temp.setNum(pType[index]);
+
+    else
+        temp = QString(pType[index]);
     return temp;
 }//get a string for a single index.
 

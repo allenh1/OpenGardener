@@ -6,6 +6,7 @@
 #include <QString>
 #include <QStringList>
 #include <type_traits>
+#include <typeinfo>
 #include <exception>
 #include <iostream>
 
@@ -84,11 +85,13 @@ public:
     bool has(T* element);
     bool has(T element);
     QString toString(int index);
+    const QString & getType(){ m_typename = QString(typeid(pType[0]).name()); return m_typename; }
 
 private:
     T * pType;
     T * m_Type; //save the variable type.
     QStringList m_log;
+    QString m_typename;
     int m_size;
 };
 
