@@ -33,7 +33,7 @@ template<typename T>
 void Set<T>::add(const T *singleton)
 {
     const int size = m_size + 1;
-    T temp[size];//copy the data
+    T * temp = new T[size];//copy the data
 
     for (int x = 0; x < m_size; x++)
         temp[x] = pType[x];
@@ -57,10 +57,16 @@ class out_of_bounds: public std::exception
 template<typename T>
 inline bool isStringType(T* other)
 {
-    if (typeid(*other).name() == "QString" ||
-            typeid(*other).name() == "string" ||
-            typeid(*other).name() == "c" ||
-            typeid(*other).name() == "QChar")
+    std::string s = typeid(*other).name();
+    //std::cout<< "isStringType() call. Type: " << s << std::endl;
+    QString name(s.c_str()); QString char_id;
+    char c = 'a'; std::string s_char = typeid(c).name();
+    char_id = s_char.c_str();
+
+    if (name == QString("QString") ||
+            name == QString("string") ||
+            name == char_id ||
+            name == QString("QChar"))
         return true;
     return false;
 }//check if the input is a string.
@@ -107,7 +113,7 @@ Set<T> operator *(Set<T>& s1, Set<T>& s2)
 }//find the intersection of two sets.
 
 template<class T>
-Set<T> operator +(Set<T>& s1, Set<T> s2)
+Set<T> operator +(Set<T>& s1, Set<T>& s2)
 {
     /** This is the union operator **/
     Set<T> * temp = new Set<T>();

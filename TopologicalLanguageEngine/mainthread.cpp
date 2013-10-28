@@ -18,7 +18,7 @@ void MainThread::run()
     Set<char>* p_test; p_test = new Set<char>;
     p_test->add(new char('a')); p_test->add(new char('b')); p_test->add(new char('3'));
     Set<char>* p_tset; p_tset = new Set<char>;
-    p_tset->add(new char(2)); p_tset->add(new char('3')); p_tset->add(new char(4));
+    p_tset->add(new char('e')); p_tset->add(new char('3')); p_tset->add(new char('4'));
 
     Set<char>* p_insctn = new Set<char>;
     Set<char>* p_union = new Set<char>;
